@@ -1,0 +1,135 @@
+/* Genel Sayfa Düzeni */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212; /* Koyu arka plan */
+    color: #ffffff; /* Beyaz yazı rengi */
+    margin: 0;
+    padding: 0;
+}
+
+/* Üst Menü Tasarımı */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    background-color: #1f1f1f;
+}
+
+header ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Hero (Karşılama) Alanı */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/hero-bg.jpg'); /* Arkaya bir görsel koyarsan güzel durur */
+    background-size: cover;
+}
+
+.hero .button {
+    display: inline-block;
+    background-color: #e50914;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+/* Kategori Alanı ve Grid Ayarı (Filmleri yan yana alan kısım) */
+.sci-fi {
+    padding: 40px;
+}
+
+/* Slider'ı ve butonları konumlandırmak için ana kapsayıcı */
+.slider-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Yenilenen Film Grid Yapısı */
+.movie-grid {
+    display: flex; /* Yan yana dizilim için flex daha avantajlı oldu */
+    gap: 20px;
+    overflow-x: auto; /* Sağa doğru taşan filmleri gizler ve kaydırılabilir yapar */
+    scroll-behavior: smooth; /* Ok butonuna basınca yumuşakça kaysın */
+    scroll-snap-type: x mandatory; /* Kaydırırken kartların tam ortada tak diye durmasını sağlar */
+    padding: 20px 0;
+    width: 100%;
+}
+
+/* Alttaki çirkin yatay kaydırma çubuğunu (scrollbar) gizlemek veya özelleştirmek için: */
+.movie-grid::-webkit-scrollbar {
+    height: 8px;
+}
+.movie-grid::-webkit-scrollbar-thumb {
+    background: #333; 
+    border-radius: 10px;
+}
+
+/* Film Kartları Tasarımı */
+.movie-card {
+    min-width: calc(20% - 15px); /* Her sırada tam 4 tane görünmesini sağlar (Boşluklar düşüldü) */
+    max-width: calc(20% - 15px); /* Maksimum genişliği de sabitleyelim */
+    flex-shrink: 0;
+    background-color: #1f1f1f;
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    scroll-snap-align: start; /* Kaydırma durduğunda kartın hizalanacağı yer */
+    transition: transform 0.2s;
+}
+
+.movie-card:hover {
+    transform: scale(1.03);
+}
+
+.movie-card img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Ok Butonlarının Tasarımı (Netflix Tarzı) */
+.slider-arrow {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.3s, opacity 0.3s;
+    opacity: 0; /* Fare üzerlerine gelene kadar butonları gizleyelim */
+}
+
+/* Fareyle film bölümünün üstüne gelince oklar görünsün */
+.slider-wrapper:hover .slider-arrow {
+    opacity: 1;
+}
+
+.slider-arrow:hover {
+    background: rgba(0, 0, 0, 0.8);
+    font-size: 2.5rem;
+}
+
+.left-arrow { left: 0; border-radius: 0 8px 8px 0; }
+.right-arrow { right: 0; border-radius: 8px 0 0 8px; }
+
